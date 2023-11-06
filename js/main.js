@@ -29,6 +29,7 @@ let winner; //'T' for tie
 	/*----- cached elements  -----*/
 const resetButton = document.querySelector('button');
 const boardCells = [...document.querySelectorAll('.grid > div')];
+const msg = document.querySelector('p');
 
 	/*----- event listeners -----*/
 document.querySelector('.grid').addEventListener('click', handleBoardClick);
@@ -47,6 +48,17 @@ function init () {
 
 function render () {
     renderBoard();
+    renderMsg();
+}
+
+function renderMsg () {
+    if (winner === null) {
+        msg.innerText = 'It is ' + colors[turn].toUpperCase() + "'s turn!";
+    } else if (winner === 'T') {
+        msg.innerText =  'There is a tie!'
+    } else {
+        msg.innerText = 'Congradulations ' + colors[turn*-1].toUpperCase() + "! You have won!"
+    }
 }
 
 //cant test
@@ -73,11 +85,30 @@ function handleBoardClick (evt) {
     
     turn = turn*-1;
 
+    checkWinner();
+
     render();
+}
+
+function checkWinner () {
+
+    winIndexs.forEach(function (winSen, idx) {
+        if (board[winSen[0]] === board[winSen[1]] && board[winSen[1]] === board[winSen[2]]) {
+            if (board[winSen[0]] !== null) {
+                winner = board[winSen[0]];
+                return;
+            }
+        }
+    });
+
+    if (!board.includes(null) && winner === null) {
+        winner = 'T';
+    }
 }
 
 function handleReset (evt) {
     init();
 }
+
 
 
