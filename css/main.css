@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Chicle', serif;
 }
 
 .grid {
@@ -22,12 +23,12 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5px;
-
-    
 }
+
 .cell {
     background-color: #999;
 }
+
 
 /* .grid {
     display: flex;                       
@@ -42,6 +43,15 @@ body {
     background-color: #999;
 } */
 
+h1 {
+    font-size: 75px;
+}
+
+
+p {
+    font-size: 30px;
+}
+
 
 button {
     margin-top: 4vmin;
@@ -51,6 +61,7 @@ button {
     border: 0.1vmin solid grey;
     color: grey;
 }
+
 
 button:hover {
     color: white;
